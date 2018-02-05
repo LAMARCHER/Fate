@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">Fate</div>
+    <div class="panel-body">
+        <p><h2>Fate Spider Data</h2></p>
+        {{ wtf.quick_form(form) }}
+        <form class="form navbar-form navbar-left" action="/" method="get">
+            <button type="submit" class="btn btn-default navbar-btn">reset</button>
+        </form>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>商品编号</th>
+                <th>商品来源</th>
+                <th>创建时间</th>
+                <th>更新时间</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for good in goods %}
+            <tr>
+                <td><a href="{{ good.good_url }}" target="_blank">{{ good.good_name }}</a></td>
+                <td>{% if good.good_price %} {{ good.good_price }} {% else %}暂无数据 {% endif %}</td>
+                <td>{{ good.good_id }}</td>
+                <td>{{ good.source }}</td>
+                <td>{{ good.create_time }}</td>
+                <td>{{ good.update_time }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.filtedData') }}
+</div>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block content %}
+<ul class="list-group">
+{% for good in goods %}
+    <li class="list-group-item">
+        <a href="{{ good.good_url }}">{{ good.good_name }}</a>
+    </li>
+{% endfor %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.index') }}
+</div>
+</ul>
+{% endblock content %}
