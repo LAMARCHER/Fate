@@ -16,8 +16,13 @@ class Config:
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     FATE_PER_PAGE = 30
 
+    @staticmethod
+    def init_app(app):
+        pass
+
 
 class DevConfig(Config):
+    DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'mysql://root:123456@127.0.0.1:3306/spider?charset=utf8'
 
 

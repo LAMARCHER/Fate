@@ -1,7 +1,7 @@
 # coding:utf-8
 from datetime import datetime
 
-from Manage import db
+from app import db
 
 
 class Fate(db.Model):
@@ -16,5 +16,13 @@ class Fate(db.Model):
     source = db.Column(db.String(32), default='')
 
 
+class User(db.Model):
+    __tablename__ = 'user'
+    id = db.Column(db.Integer, nullable=False, autoincrement=True, primary_key=True)
+    user_name = db.Column(db.String(64), nullable=False)
+    email = db.Column(db.String(128), unique=True)
+    password = db.Column(db.String(64), nullable=False)
+    create_time = db.Column(db.DateTime, default=datetime.now())
+    update_time = db.Column(db.DateTime)
 
 
